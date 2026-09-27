@@ -1,3 +1,8 @@
+/* * {
+    padding: 0;
+    margin: 0;
+} */
+
 .awnserOptions {
     display: flex;
     gap: 1em;
@@ -16,4 +21,9 @@
 .awnserOption:hover,
 .awnserOption.selected {
     background-color: blue;
+}
+
+.CorrectOrIncorrect {
+    background-color: gray;
+    padding: 0.5em;
 }

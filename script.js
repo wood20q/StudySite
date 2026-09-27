@@ -9,7 +9,6 @@ let questionList = []
 let currentQuestion = 0
 
 document.getElementById('csvFileInput').addEventListener('change', function(event) {
-    console.log("File Uptated")
     importCSV(event.target.files[0])
 })
 
@@ -26,17 +25,24 @@ function updateAwnsers() {
     let awnserRandomNumber = Math.floor(Math.random() * 4)
 
     if (awnserRandomNumber == 0) {
-        correctOption = 'A';
+        correctOption = 'a';
         awnserOptions[0] = questionList[currentQuestion][1]
     } else if (awnserRandomNumber == 1) {
-        correctOption = 'B';
+        correctOption = 'v';
         awnserOptions[1] = questionList[currentQuestion][1]
     } else if (awnserRandomNumber == 2) {
-        correctOption = 'C';
+        correctOption = 'c';
         awnserOptions[2] = questionList[currentQuestion][1]
     } else if (awnserRandomNumber == 3) {
-        correctOption = 'D';
+        correctOption = 'd';
         awnserOptions[3] = questionList[currentQuestion][1]
+    }
+
+    for (let i = 0; i < awnserOptions.length; i++) {
+        if (awnserOptions[i]) continue
+        let randomAwnser = Math.floor(Math.random() * questionList.length)
+        console.log(i)
+        awnserOptions[i] = questionList[randomAwnser][1]
     }
 
     ABUTTON.querySelector(".awnser").textContent = awnserOptions[0]
@@ -53,7 +59,6 @@ function importCSV(file) {
     reader.onload = (e) => {
         const text = e.target.result
         const data = parseCSV(text)
-        console.log(data)
 
         questionList = data
         shuffleQuestions()
@@ -65,7 +70,6 @@ function importCSV(file) {
 function shuffleQuestions() {
     for (let i = 0; i < questionList.length; i++) {
         let j = Math.floor(Math.random() * questionList.length)
-        console.log(`i = ${i} | j = ${j}`)
         ;[questionList[i], questionList[j]] = [questionList[j], questionList[i]]
     }
 
@@ -99,12 +103,25 @@ function chooseAwnser (option) {
     if (option == "d") {DBUTTON.classList.add("selected"); selectedAwnser = option}
 }
 
+function checkAwnser() {
+    let header = document.getElementById("awnserStatus")
+    let text = document.getElementById("awnserText")
+    let question = questionList[currentQuestion]
+
+    if (correctOption == selectedAwnser) header.textContent = "Correct"
+    else header.textContent = "Incorrect"
+
+    text.textContent = `The awnser is: ${question[0]} = ${question[1]}`
+}
+
 function submitAwnser() {
     if (questionList.length == 0) {alert("Please Upload a file before trying to awnser questions"); return}
     if (selectedAwnser == null) {return}
-
+    checkAwnser()
+ 
     console.log(`Awnser you chose: ${selectedAwnser}`)
-    resetAwnsers()
     currentQuestion++
+
+    resetAwnsers()
     updateQestion()
 }
