@@ -3,7 +3,7 @@ BBUTTON = document.getElementById("optionB")
 CBUTTON = document.getElementById("optionC")
 DBUTTON = document.getElementById("optionD")
 
-let selectedAwnser = null
+let selectedAnswer = null
 let correctOption = null
 let questionList = []
 let currentQuestion = 0
@@ -12,43 +12,43 @@ document.getElementById('csvFileInput').addEventListener('change', function(even
     importCSV(event.target.files[0])
 })
 
-function updateQestion() {
+function updateQuestion() {
     if (currentQuestion >= questionList.length) shuffleQuestions()
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][0]
-    updateAwnsers()
+    updateAnswers()
 }
 
-function updateAwnsers() {
-    let awnserOptions = [null, null, null, null]
+function updateAnswers() {
+    let answerOptions = [null, null, null, null]
 
-    let awnserRandomNumber = Math.floor(Math.random() * 4)
+    let answerRandomNumber = Math.floor(Math.random() * 4)
 
-    if (awnserRandomNumber == 0) {
+    if (answerRandomNumber == 0) {
         correctOption = 'a';
-        awnserOptions[0] = questionList[currentQuestion][1]
-    } else if (awnserRandomNumber == 1) {
+        answerOptions[0] = questionList[currentQuestion][1]
+    } else if (answerRandomNumber == 1) {
         correctOption = 'v';
-        awnserOptions[1] = questionList[currentQuestion][1]
-    } else if (awnserRandomNumber == 2) {
+        answerOptions[1] = questionList[currentQuestion][1]
+    } else if (answerRandomNumber == 2) {
         correctOption = 'c';
-        awnserOptions[2] = questionList[currentQuestion][1]
-    } else if (awnserRandomNumber == 3) {
+        answerOptions[2] = questionList[currentQuestion][1]
+    } else if (answerRandomNumber == 3) {
         correctOption = 'd';
-        awnserOptions[3] = questionList[currentQuestion][1]
+        answerOptions[3] = questionList[currentQuestion][1]
     }
 
-    for (let i = 0; i < awnserOptions.length; i++) {
-        if (awnserOptions[i]) continue
-        let randomAwnser = Math.floor(Math.random() * questionList.length)
+    for (let i = 0; i < answerOptions.length; i++) {
+        if (answerOptions[i]) continue
+        let randomAnswer = Math.floor(Math.random() * questionList.length)
         console.log(i)
-        awnserOptions[i] = questionList[randomAwnser][1]
+        answerOptions[i] = questionList[randomAnswer][1]
     }
 
-    ABUTTON.querySelector(".awnser").textContent = awnserOptions[0]
-    BBUTTON.querySelector(".awnser").textContent = awnserOptions[1]
-    CBUTTON.querySelector(".awnser").textContent = awnserOptions[2]
-    DBUTTON.querySelector(".awnser").textContent = awnserOptions[3]
+    ABUTTON.querySelector(".answer").textContent = answerOptions[0]
+    BBUTTON.querySelector(".answer").textContent = answerOptions[1]
+    CBUTTON.querySelector(".answer").textContent = answerOptions[2]
+    DBUTTON.querySelector(".answer").textContent = answerOptions[3]
 }
 
 function importCSV(file) {
@@ -76,7 +76,7 @@ function shuffleQuestions() {
     console.log(questionList)
 
     currentQuestion = 0
-    updateQestion()
+    updateQuestion()
 }
 
 function parseCSV(text) {
@@ -84,44 +84,44 @@ function parseCSV(text) {
     return lines.map(line => line.split(","))
 }
 
-function resetAwnsers () {
+function resetAnswers () {
     ABUTTON.classList.remove("selected")
     BBUTTON.classList.remove("selected")
     CBUTTON.classList.remove("selected")
     DBUTTON.classList.remove("selected")
-    selectedAwnser = null
+    selectedAnswer = null
 }
 
-function chooseAwnser (option) {
+function chooseAnswer (option) {
     console.log(`Testing ${option}`)
 
-    resetAwnsers()
+    resetAnswers()
 
-    if (option == "a") {ABUTTON.classList.add("selected"); selectedAwnser = option}
-    if (option == "b") {BBUTTON.classList.add("selected"); selectedAwnser = option}
-    if (option == "c") {CBUTTON.classList.add("selected"); selectedAwnser = option}
-    if (option == "d") {DBUTTON.classList.add("selected"); selectedAwnser = option}
+    if (option == "a") {ABUTTON.classList.add("selected"); selectedAnswer = option}
+    if (option == "b") {BBUTTON.classList.add("selected"); selectedAnswer = option}
+    if (option == "c") {CBUTTON.classList.add("selected"); selectedAnswer = option}
+    if (option == "d") {DBUTTON.classList.add("selected"); selectedAnswer = option}
 }
 
-function checkAwnser() {
-    let header = document.getElementById("awnserStatus")
-    let text = document.getElementById("awnserText")
+function checkAnswer() {
+    let header = document.getElementById("answerStatus")
+    let text = document.getElementById("answerText")
     let question = questionList[currentQuestion]
 
-    if (correctOption == selectedAwnser) header.textContent = "Correct"
+    if (correctOption == selectedAnswer) header.textContent = "Correct"
     else header.textContent = "Incorrect"
 
-    text.textContent = `The awnser is: ${question[0]} = ${question[1]}`
+    text.textContent = `The answer is: ${question[0]} = ${question[1]}`
 }
 
-function submitAwnser() {
-    if (questionList.length == 0) {alert("Please Upload a file before trying to awnser questions"); return}
-    if (selectedAwnser == null) {return}
-    checkAwnser()
+function submitAnswer() {
+    if (questionList.length == 0) {alert("Please Upload a file before trying to answer questions"); return}
+    if (selectedAnswer == null) {return}
+    checkAnswer()
  
-    console.log(`Awnser you chose: ${selectedAwnser}`)
+    console.log(`Answer you chose: ${selectedAnswer}`)
     currentQuestion++
 
-    resetAwnsers()
-    updateQestion()
+    resetAnswers()
+    updateQuestion()
 }

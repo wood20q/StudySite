@@ -3,13 +3,13 @@
     margin: 0;
 } */
 
-.awnserOptions {
+.answerOptions {
     display: flex;
     gap: 1em;
     list-style: none;
 }
 
-.awnserOption {
+.answerOption {
     display: flex;
     align-items: center;
     gap: 1em;
@@ -18,8 +18,8 @@
     border-radius: 25px;
 }
 
-.awnserOption:hover,
-.awnserOption.selected {
+.answerOption:hover,
+.answerOption.selected {
     background-color: blue;
 }
 

@@ -10,29 +10,29 @@
 <body>
     <H2>Question:</H2>
     <p id="question">Question itself!!</p>
-    <ul class="awnserOptions">
-        <li class="awnserOption" onclick="chooseAwnser(`a`)" id="optionA">
+    <ul class="answerOptions">
+        <li class="answerOption" onclick="chooseAnswer(`a`)" id="optionA">
             <h2>A</h2>
-            <p class="awnser">Option A</p>
+            <p class="answer">Option A</p>
         </li>
-        <li class="awnserOption" onclick="chooseAwnser(`b`)" id="optionB">
+        <li class="answerOption" onclick="chooseAnswer(`b`)" id="optionB">
             <h2>B</h2>
-            <p class="awnser">Option B</p>
+            <p class="answer">Option B</p>
         </li>
-        <li class="awnserOption" onclick="chooseAwnser(`c`)" id="optionC">
+        <li class="answerOption" onclick="chooseAnswer(`c`)" id="optionC">
             <h2>C</h2>
-            <p class="awnser">Option C</p>
+            <p class="answer">Option C</p>
         </li>
-        <li class="awnserOption" onclick="chooseAwnser(`d`)" id="optionD">
+        <li class="answerOption" onclick="chooseAnswer(`d`)" id="optionD">
             <h2>D</h2>
-            <p class="awnser">Option D</p>
+            <p class="answer">Option D</p>
         </li>
     </ul>
-    <button class="AwnserButton" onclick="submitAwnser()">Submit</button>
+    <button class="AnswerButton" onclick="submitAnswer()">Submit</button>
     <input type="file" id="csvFileInput" accept=".csv" />
     <div class="CorrectOrIncorrect">
-        <h1 class="awnserStatus" id="awnserStatus">Correct or Incorect</h1>
-        <p class="awnserText" id="awnserText">This is place holder text but question = awnser</p>
+        <h1 class="answerStatus" id="answerStatus">Correct or Incorrect</h1>
+        <p class="answerText" id="answerText">This is place holder text but question = answer</p>
     </div>
 </body>
 </html>
