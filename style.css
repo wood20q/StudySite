@@ -1,0 +1,18 @@
+.awnserOptions {
+    display: flex;
+    gap: 1em;
+}
+
+.awnserOption {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0 1em;
+    background-color: gray;
+    border-radius: 25px;
+}
+
+.awnserOption:hover,
+.awnserOption.selected {
+    background-color: blue;
+}
