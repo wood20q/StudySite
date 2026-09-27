@@ -4,6 +4,7 @@ CBUTTON = document.getElementById("optionC")
 DBUTTON = document.getElementById("optionD")
 
 let selectedAwnser = null
+let correctAwnser = null
 let questionList = []
 let currentQuestion = 0
 
@@ -13,7 +14,7 @@ document.getElementById('csvFileInput').addEventListener('change', function(even
 })
 
 function updateQestion() {
-    if (currentQuestion >= questionList.length) currentQuestion = 0
+    if (currentQuestion >= questionList.length) shuffleQuestions()
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][0]
 }
@@ -29,12 +30,23 @@ function importCSV(file) {
         console.log(data)
 
         questionList = data
-
-        currentQuestion = 0
-        updateQestion()
+        shuffleQuestions()
     }
 
     reader.readAsText(file)
+}
+
+function shuffleQuestions() {
+    for (let i = 0; i < questionList.length; i++) {
+        let j = Math.floor(Math.random() * questionList.length)
+        console.log(`i = ${i} | j = ${j}`)
+        ;[questionList[i], questionList[j]] = [questionList[j], questionList[i]]
+    }
+
+    console.log(questionList)
+
+    currentQuestion = 0
+    updateQestion()
 }
 
 function parseCSV(text) {
