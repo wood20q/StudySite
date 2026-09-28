@@ -13,6 +13,7 @@ document.getElementById('csvFileInput').addEventListener('change', function(even
 })
 
 function updateQuestion() {
+    console.log("Update Question")
     if (currentQuestion >= questionList.length) shuffleQuestions()
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][0]
@@ -20,6 +21,7 @@ function updateQuestion() {
 }
 
 function updateAnswers() {
+    console.log("Update Answers")
     let answerOptions = [null, null, null, null]
 
     let answerRandomNumber = Math.floor(Math.random() * 4)
@@ -42,10 +44,10 @@ function updateAnswers() {
         while (answerOptions[i] == null) {
             let randomAnswer = Math.floor(Math.random() * questionList.length)
             let match = false
-            for (let j = 0; i < answerOptions.length; j++){
+            for (let j = 0; j < answerOptions.length; j++){
                 if (questionList[randomAnswer][1] == answerOptions[j]) match = true
             }
-            if (!match) answerOptions[i] = questionList[randomAnswer]
+            if (!match) answerOptions[i] = questionList[randomAnswer][1]
         }
     }
 
@@ -56,6 +58,7 @@ function updateAnswers() {
 }
 
 function importCSV(file) {
+    console.log("Import CSV")
     if (!file) return
 
     const reader = new FileReader()
@@ -72,7 +75,9 @@ function importCSV(file) {
 }
 
 function shuffleQuestions() {
+    console.log("Shuffle Questions")
     for (let i = 0; i < questionList.length; i++) {
+        console.log(`I = ${i}`)
         let j = Math.floor(Math.random() * questionList.length)
         ;[questionList[i], questionList[j]] = [questionList[j], questionList[i]]
     }
@@ -84,11 +89,13 @@ function shuffleQuestions() {
 }
 
 function parseCSV(text) {
+    console.log("Parse CSV")
     const lines = text.split('\n').slice(1)
     return lines.map(line => line.split(","))
 }
 
 function resetAnswers () {
+    console.log("Reset Answers")
     ABUTTON.classList.remove("selected")
     BBUTTON.classList.remove("selected")
     CBUTTON.classList.remove("selected")
@@ -97,6 +104,7 @@ function resetAnswers () {
 }
 
 function chooseAnswer (option) {
+    console.log("Choose Answers")
     console.log(`Testing ${option}`)
 
     resetAnswers()
@@ -108,6 +116,7 @@ function chooseAnswer (option) {
 }
 
 function checkAnswer() {
+    console.log("Check Answer")
     let header = document.getElementById("answerStatus")
     let text = document.getElementById("answerText")
     let question = questionList[currentQuestion]
@@ -119,6 +128,7 @@ function checkAnswer() {
 }
 
 function submitAnswer() {
+    console.log("Submit Answer")
     if (questionList.length == 0) {alert("Please Upload a file before trying to answer questions"); return}
     if (selectedAnswer == null) {return}
     checkAnswer()
