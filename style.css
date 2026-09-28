@@ -1,4 +1,4 @@
-/* * {
+* {
     padding: 0;
     margin: 0;
 }
@@ -6,7 +6,13 @@
 html {
     background: var(--crust);
     color: var(--text);
-} */
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    gap: 1em;
+}
 
 .answerOptions {
     display: flex;
@@ -19,16 +25,32 @@ html {
     align-items: center;
     gap: 1em;
     padding: 0 1em;
-    background-color: gray;
+    background-color: var(--surface1);
     border-radius: 25px;
 }
 
 .answerOption:hover,
 .answerOption.selected {
-    background-color: blue;
+    background-color: var(--mauve);
+    color: var(--crust);
+}
+
+::file-selector-button,
+.AnswerButton {
+    padding: 0.5em 1em;
+    background-color: var(--surface1);
+    border: none;
+    color: var(--text);
+    border-radius: 25px;
+}
+
+::file-selector-button:hover,
+.AnswerButton:hover {
+    background-color: var(--mauve);
+    color: var(--crust)
 }
 
 .CorrectOrIncorrect {
-    background-color: gray;
+    background-color: var(--surface0);
     padding: 0.5em;
 }

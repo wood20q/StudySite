@@ -9,7 +9,7 @@
     <title>Study Site</title>
 </head>
 <body>
-    <H2>Question:</H2>
+    <H1>Question:</H1>
     <p id="question">Question itself!!</p>
     <ul class="answerOptions">
         <li class="answerOption" onclick="chooseAnswer(`a`)" id="optionA">
@@ -29,8 +29,10 @@
             <p class="answer">Option D</p>
         </li>
     </ul>
-    <button class="AnswerButton" onclick="submitAnswer()">Submit</button>
-    <input type="file" id="csvFileInput" accept=".csv" />
+    <div class="buttonsClass">
+        <button class="AnswerButton" onclick="submitAnswer()">Submit</button>
+        <input type="file" id="csvFileInput" accept=".csv" />
+    </div>
     <div class="CorrectOrIncorrect">
         <h1 class="answerStatus" id="answerStatus">Correct or Incorrect</h1>
         <p class="answerText" id="answerText">This is place holder text but question = answer</p>
