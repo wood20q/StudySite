@@ -39,10 +39,14 @@ function updateAnswers() {
     }
 
     for (let i = 0; i < answerOptions.length; i++) {
-        if (answerOptions[i]) continue
-        let randomAnswer = Math.floor(Math.random() * questionList.length)
-        console.log(i)
-        answerOptions[i] = questionList[randomAnswer][1]
+        while (answerOptions[i] == null) {
+            let randomAnswer = Math.floor(Math.random() * questionList.length)
+            let match = false
+            for (let j = 0; i < answerOptions.length; j++){
+                if (questionList[randomAnswer][1] == answerOptions[j]) match = true
+            }
+            if (!match) answerOptions[i] = questionList[randomAnswer]
+        }
     }
 
     ABUTTON.querySelector(".answer").textContent = answerOptions[0]
