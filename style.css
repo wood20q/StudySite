@@ -50,7 +50,19 @@ body {
     color: var(--crust)
 }
 
-.CorrectOrIncorrect {
-    background-color: var(--surface0);
+.CorrectOrIncorrect {display: none;}
+
+.Correct,
+.Incorrect {
+    color: var(--base);
     padding: 0.5em;
+    border-radius: 15px;
+}
+
+.Correct {
+    background-color: var(--green);
+}
+
+.Incorrect {
+    background-color: var(--red);
 }

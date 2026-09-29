@@ -117,12 +117,18 @@ function chooseAnswer (option) {
 
 function checkAnswer() {
     console.log("Check Answer")
+    let box = document.getElementById("CorrectOrIncorrect")
     let header = document.getElementById("answerStatus")
     let text = document.getElementById("answerText")
     let question = questionList[currentQuestion]
 
-    if (correctOption == selectedAnswer) header.textContent = "Correct"
-    else header.textContent = "Incorrect"
+    if (correctOption == selectedAnswer) {
+        header.textContent = "Correct"
+        box.classList = "Correct"
+    } else {
+        header.textContent = "Incorrect"
+        box.classList = "Incorrect"
+    }
 
     text.textContent = `The answer is: ${question[0]} = ${question[1]}`
 }
