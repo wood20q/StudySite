@@ -1,7 +1,7 @@
-ABUTTON = document.getElementById("optionA")
-BBUTTON = document.getElementById("optionB")
-CBUTTON = document.getElementById("optionC")
-DBUTTON = document.getElementById("optionD")
+const ABUTTON = document.getElementById("optionA")
+const BBUTTON = document.getElementById("optionB")
+const CBUTTON = document.getElementById("optionC")
+const DBUTTON = document.getElementById("optionD")
 
 let selectedAnswer = null
 let correctOption = null
@@ -14,7 +14,7 @@ document.getElementById('csvFileInput').addEventListener('change', function(even
 
 function updateQuestion() {
     console.log("Update Question")
-    if (currentQuestion >= questionList.length) shuffleQuestions()
+    if (currentQuestion >= questionList.length) {shuffleQuestions(); return}
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][0]
     updateAnswers()
@@ -30,7 +30,7 @@ function updateAnswers() {
         correctOption = 'a';
         answerOptions[0] = questionList[currentQuestion][1]
     } else if (answerRandomNumber == 1) {
-        correctOption = 'v';
+        correctOption = 'b';
         answerOptions[1] = questionList[currentQuestion][1]
     } else if (answerRandomNumber == 2) {
         correctOption = 'c';
@@ -67,6 +67,12 @@ function importCSV(file) {
         const text = e.target.result
         const data = parseCSV(text)
 
+        // Add this check
+        if (data.length < 4) {
+            alert("Your CSV must contain at least 4 items to play.")
+            return
+        }
+
         questionList = data
         shuffleQuestions()
     }
@@ -90,7 +96,7 @@ function shuffleQuestions() {
 
 function parseCSV(text) {
     console.log("Parse CSV")
-    const lines = text.split('\n').slice(1)
+    const lines = text.split('\n').slice(1).filter(line => line.trim() !== "")
     return lines.map(line => line.split(","))
 }
 
@@ -124,10 +130,10 @@ function checkAnswer() {
 
     if (correctOption == selectedAnswer) {
         header.textContent = "Correct"
-        box.classList = "Correct"
+        box.className = "Correct"
     } else {
         header.textContent = "Incorrect"
-        box.classList = "Incorrect"
+        box.className = "Incorrect"
     }
 
     text.textContent = `The answer is: ${question[0]} = ${question[1]}`
