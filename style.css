@@ -35,8 +35,15 @@ body {
     color: var(--crust);
 }
 
+.buttonsWrapper {
+    display: flex;
+    justify-self: center;
+    gap: 0.5em;
+}
+
 ::file-selector-button,
-.AnswerButton {
+.AnswerButton,
+.switchType {
     padding: 0.5em 1em;
     background-color: var(--surface1);
     border: none;
@@ -45,7 +52,8 @@ body {
 }
 
 ::file-selector-button:hover,
-.AnswerButton:hover {
+.AnswerButton:hover,
+.switchType:hover {
     background-color: var(--mauve);
     color: var(--crust)
 }

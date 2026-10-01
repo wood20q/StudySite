@@ -8,6 +8,9 @@ let correctOption = null
 let questionList = []
 let currentQuestion = 0
 
+let questionIndex = 1
+let answerIndex = 0
+
 document.getElementById('csvFileInput').addEventListener('change', function(event) {
     importCSV(event.target.files[0])
 })
@@ -15,8 +18,12 @@ document.getElementById('csvFileInput').addEventListener('change', function(even
 function updateQuestion() {
     console.log("Update Question")
     if (currentQuestion >= questionList.length) {shuffleQuestions(); return}
+
+    const questionHeader = document.getElementById("questionTitle")
+    questionHeader.textContent = `Question (${currentQuestion + 1} / ${questionList.length}):`
+
     const questionField = document.getElementById("question")
-    questionField.textContent = questionList[currentQuestion][0]
+    questionField.textContent = questionList[currentQuestion][questionIndex]
     updateAnswers()
 }
 
@@ -28,16 +35,16 @@ function updateAnswers() {
 
     if (answerRandomNumber == 0) {
         correctOption = 'a';
-        answerOptions[0] = questionList[currentQuestion][1]
+        answerOptions[0] = questionList[currentQuestion][answerIndex]
     } else if (answerRandomNumber == 1) {
         correctOption = 'b';
-        answerOptions[1] = questionList[currentQuestion][1]
+        answerOptions[1] = questionList[currentQuestion][answerIndex]
     } else if (answerRandomNumber == 2) {
         correctOption = 'c';
-        answerOptions[2] = questionList[currentQuestion][1]
+        answerOptions[2] = questionList[currentQuestion][answerIndex]
     } else if (answerRandomNumber == 3) {
         correctOption = 'd';
-        answerOptions[3] = questionList[currentQuestion][1]
+        answerOptions[3] = questionList[currentQuestion][answerIndex]
     }
 
     for (let i = 0; i < answerOptions.length; i++) {
@@ -45,9 +52,9 @@ function updateAnswers() {
             let randomAnswer = Math.floor(Math.random() * questionList.length)
             let match = false
             for (let j = 0; j < answerOptions.length; j++){
-                if (questionList[randomAnswer][1] == answerOptions[j]) match = true
+                if (questionList[randomAnswer][answerIndex] == answerOptions[j]) match = true
             }
-            if (!match) answerOptions[i] = questionList[randomAnswer][1]
+            if (!match) answerOptions[i] = questionList[randomAnswer][answerIndex]
         }
     }
 
@@ -136,7 +143,7 @@ function checkAnswer() {
         box.className = "Incorrect"
     }
 
-    text.textContent = `The answer is: ${question[0]} = ${question[1]}`
+    text.textContent = `The answer is: ${question[questionIndex]} = ${question[answerIndex]}`
 }
 
 function submitAnswer() {
@@ -150,4 +157,10 @@ function submitAnswer() {
 
     resetAnswers()
     updateQuestion()
+}
+
+function flipQuestionsToAnswers() {
+    ;[questionIndex, answerIndex] = [answerIndex, questionIndex]
+    updateQuestion()
+    updateAnswers()
 }
