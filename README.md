@@ -43,7 +43,7 @@ Open `index.html` in a web browser.
 
 Use the file input in the page to upload a CSV file.
 
-Your CSV should have at least two columns:
+Your CSV should have two columns:
 
 - Column 1: the prompt/question
 - Column 2: the answer
@@ -77,7 +77,7 @@ This is useful for studying in reverse, such as identifying a formula from a nam
 - `style.css` – styling for the app
 - `theme.css` – color theme definitions
 - `script.js` – logic for reading CSV files, generating choices, checking answers, and shuffling questions
-- `polyAtomicIons.csv` – sample study data for polyatomic ions
+- `polyAtomicIons.csv` – sample study data for poly-atomic ions
 
 ## Notes
 
@@ -87,7 +87,7 @@ To use it, simply serve the files locally in a browser or open `index.html` dire
 
 ## Suggested next improvements
 
-- Add support for editing or creating study sets directly in the browser
+- Add support for text input instead of just multiple choice 
 - Add scoring and progress tracking
 - Add keyboard controls for answering questions
 - Add support for larger CSV files and validation checks
