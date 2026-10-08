@@ -3,6 +3,9 @@
     margin: 0;
 }
 
+.disabled { display: none }
+.answerOptions.disabled { display: none }
+
 html {
     background: var(--crust);
     color: var(--text);
@@ -33,6 +36,16 @@ body {
 .answerOption.selected {
     background-color: var(--mauve);
     color: var(--crust);
+}
+
+#answerBox {
+    background-color: var(--surface1);
+    color: var(--text);
+    border: none;
+    border-radius: 25px;
+    height: 3em;
+    text-align: center;
+    font-weight: 1000;
 }
 
 .buttonsWrapper {

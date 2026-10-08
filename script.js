@@ -2,14 +2,19 @@ const ABUTTON = document.getElementById("optionA")
 const BBUTTON = document.getElementById("optionB")
 const CBUTTON = document.getElementById("optionC")
 const DBUTTON = document.getElementById("optionD")
+const TEXTANSWERS = document.getElementById("answerBox")
 
 let selectedAnswer = null
 let correctOption = null
+let correctAnswer = null
 let questionList = []
 let currentQuestion = 0
 
 let questionIndex = 1
 let answerIndex = 0
+
+// Whether the questions will be multiple choice or not
+let multipleChoice = true
 
 document.getElementById('csvFileInput').addEventListener('change', function(event) {
     importCSV(event.target.files[0])
@@ -46,6 +51,8 @@ function updateAnswers() {
         correctOption = 'd';
         answerOptions[3] = questionList[currentQuestion][answerIndex]
     }
+
+    correctAnswer = questionList[currentQuestion][answerIndex]
 
     for (let i = 0; i < answerOptions.length; i++) {
         while (answerOptions[i] == null) {
@@ -113,6 +120,7 @@ function resetAnswers () {
     BBUTTON.classList.remove("selected")
     CBUTTON.classList.remove("selected")
     DBUTTON.classList.remove("selected")
+    TEXTANSWERS.value = ""
     selectedAnswer = null
 }
 
@@ -135,12 +143,22 @@ function checkAnswer() {
     let text = document.getElementById("answerText")
     let question = questionList[currentQuestion]
 
-    if (correctOption == selectedAnswer) {
-        header.textContent = "Correct"
-        box.className = "Correct"
+    if (multipleChoice) {
+        if (correctOption == selectedAnswer) {
+            header.textContent = "Correct"
+            box.className = "Correct"
+        } else {
+            header.textContent = "Incorrect"
+            box.className = "Incorrect"
+        }
     } else {
-        header.textContent = "Incorrect"
-        box.className = "Incorrect"
+        if (TEXTANSWERS.value.trim() == correctAnswer.trim()) {
+            header.textContent = "Correct"
+            box.className = "Correct"            
+        } else {
+            header.textContent = `"${TEXTANSWERS.value}" is Incorrect`
+            box.className = "Incorrect"
+        }
     }
 
     text.textContent = `The answer is: ${question[questionIndex]} = ${question[answerIndex]}`
@@ -148,8 +166,10 @@ function checkAnswer() {
 
 function submitAnswer() {
     console.log("Submit Answer")
+    console.log(TEXTANSWERS.value)
     if (questionList.length == 0) {alert("Please Upload a file before trying to answer questions"); return}
-    if (selectedAnswer == null) {return}
+    if (selectedAnswer == null && multipleChoice) {return}
+    else if (TEXTANSWERS.value.trim() == "") {return}
     checkAnswer()
  
     console.log(`Answer you chose: ${selectedAnswer}`)
@@ -159,8 +179,28 @@ function submitAnswer() {
     updateQuestion()
 }
 
-function flipQuestionsToAnswers() {
+function flipQuestionType() {
     ;[questionIndex, answerIndex] = [answerIndex, questionIndex]
     updateQuestion()
     updateAnswers()
 }
+
+function flipAnswerType() {
+    let multipleChoiceAnswers = document.getElementById("answerOptions")
+
+    multipleChoice = !multipleChoice
+    if (multipleChoice) {
+        multipleChoiceAnswers.classList.remove("disabled")
+        TEXTANSWERS.classList.add("disabled")
+    } else {
+        multipleChoiceAnswers.classList.add("disabled")
+        TEXTANSWERS.classList.remove("disabled")
+    }
+}
+
+TEXTANSWERS.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        submitAnswer();
+    }
+});
