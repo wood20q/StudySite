@@ -3,8 +3,7 @@
     margin: 0;
 }
 
-.disabled { display: none }
-.answerOptions.disabled { display: none }
+.disabled { display: none !important}
 
 html {
     background: var(--crust);

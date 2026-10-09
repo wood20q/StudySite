@@ -169,7 +169,7 @@ function submitAnswer() {
     console.log(TEXTANSWERS.value)
     if (questionList.length == 0) {alert("Please Upload a file before trying to answer questions"); return}
     if (selectedAnswer == null && multipleChoice) {return}
-    else if (TEXTANSWERS.value.trim() == "") {return}
+    else if (TEXTANSWERS.value.trim() == "" && !multipleChoice) {return}
     checkAnswer()
  
     console.log(`Answer you chose: ${selectedAnswer}`)
