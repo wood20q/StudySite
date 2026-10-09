@@ -125,5 +125,6 @@ To use it, simply serve the files locally in a browser or open `index.html` dire
 - Add support for larger CSV files and stronger validation checks
 - Add a landing page or built-in instructions panel
 - Add support for case-insensitive or normalized text matching in text mode
+- Add support for making sets within the site
 
 This project is ideal for personal study, classroom review, and quick memorization drills.
