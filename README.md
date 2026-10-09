@@ -109,6 +109,7 @@ This lets you practice both recognition-based recall and direct answer input.
 - `theme.css` – color theme definitions
 - `script.js` – CSV parsing, answer generation, validation, question switching, and study logic
 - `polyAtomicIons.csv` – sample study data for polyatomic ions
+- `oxyacids.csv` - sample study data for the oxyacids
 
 ## Notes
 
