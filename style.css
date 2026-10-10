@@ -12,22 +12,63 @@ html {
 
 body {
     display: grid;
-    justify-content: center;
+    grid-template-columns: 1fr;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1em;
+    background-color: var(--mantle);
+    padding: 1em;
+}
+
+main {
+    background: var(--surface0);
+    padding: 1em;
+    margin: 2em 5%;
+    border-radius: 25px;
+    display: grid;
     gap: 1em;
 }
 
+header {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+}
+
+@media (max-width: 475px) {
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .answerOptions {
+        flex-direction: column;
+    }
+
+    .buttonsWrapper {
+        flex-direction: column;
+    }
+}
+
+/* Old Code */
+
 .answerOptions {
     display: flex;
+    flex-wrap: wrap;
     gap: 1em;
     list-style: none;
 }
 
 .answerOption {
     display: flex;
+    flex-grow: 1;
     align-items: center;
     gap: 1em;
     padding: 0 1em;
-    background-color: var(--surface1);
+    background-color: var(--surface2);
     border-radius: 25px;
 }
 
@@ -39,6 +80,7 @@ body {
 
 #answerBox {
     background-color: var(--surface1);
+    width: 100%;
     color: var(--text);
     border: none;
     border-radius: 25px;

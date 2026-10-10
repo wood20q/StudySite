@@ -9,36 +9,51 @@
     <title>Study Site</title>
 </head>
 <body>
-    <h1 id="questionTitle">Question:</h1>
-    <p id="question">Question itself!!</p>
-    <ul class="answerOptions" id="answerOptions">
-        <li class="answerOption" onclick="chooseAnswer(`a`)" id="optionA">
-            <h2>A</h2>
-            <p class="answer">Option A</p>
-        </li>
-        <li class="answerOption" onclick="chooseAnswer(`b`)" id="optionB">
-            <h2>B</h2>
-            <p class="answer">Option B</p>
-        </li>
-        <li class="answerOption" onclick="chooseAnswer(`c`)" id="optionC">
-            <h2>C</h2>
-            <p class="answer">Option C</p>
-        </li>
-        <li class="answerOption" onclick="chooseAnswer(`d`)" id="optionD">
-            <h2>D</h2>
-            <p class="answer">Option D</p>
-        </li>
-    </ul>
-    <input class="disabled" type="text" id="answerBox">
-    <div class="buttonsWrapper">
-        <button class="AnswerButton" onclick="submitAnswer()">Submit</button>
+    <!-- refactored Code -->
+    <nav>
+        <h1>Study Site</h1>
         <button class="switchType" onClick="flipQuestionType()">Switch Question Type</button>
         <button class="switchType" onClick="flipAnswerType()">Switch Answer Type</button>
-        <input type="file" id="csvFileInput" accept=".csv" />
-    </div>
-    <div class="CorrectOrIncorrect" id="CorrectOrIncorrect">
-        <h1 class="answerStatus" id="answerStatus">Correct or Incorrect</h1>
-        <p class="answerText" id="answerText">This is place holder text but question = answer</p>
-    </div>
+    </nav>
+    <main>
+        <header>
+            <h1 id="questionTitle">Question:</h1>
+            <h3 id="scoring">Answer Streak: 0</h3>
+        </header>
+        <div class="flashCardWrapper">
+            <p id="question">Question itself!!</p>
+        </div>
+        <div class="answerWrapper">
+            <ul class="answerOptions" id="answerOptions">
+                <li class="answerOption" onclick="chooseAnswer(`a`)" id="optionA">
+                    <h2>A</h2>
+                    <p class="answer">Option A</p>
+                </li>
+                <li class="answerOption" onclick="chooseAnswer(`b`)" id="optionB">
+                    <h2>B</h2>
+                    <p class="answer">Option B</p>
+                </li>
+                <li class="answerOption" onclick="chooseAnswer(`c`)" id="optionC">
+                    <h2>C</h2>
+                    <p class="answer">Option C</p>
+                </li>
+                <li class="answerOption" onclick="chooseAnswer(`d`)" id="optionD">
+                    <h2>D</h2>
+                    <p class="answer">Option D</p>
+                </li>
+            </ul>
+            <input class="disabled" type="text" id="answerBox">
+        </div>
+        <div class="submitArea">
+            <div class="buttonsWrapper">
+                <button class="AnswerButton" onclick="submitAnswer()">Submit</button>
+                <input type="file" id="csvFileInput" accept=".csv" />
+            </div>
+        </div>
+        <div class="CorrectOrIncorrect" id="CorrectOrIncorrect">
+            <h1 class="answerStatus" id="answerStatus">Correct or Incorrect</h1>
+            <p class="answerText" id="answerText">This is place holder text but question = answer</p>
+        </div>
+    </main>
 </body>
 </html>

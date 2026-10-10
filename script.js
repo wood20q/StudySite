@@ -9,6 +9,7 @@ let correctOption = null
 let correctAnswer = null
 let questionList = []
 let currentQuestion = 0
+let currentStreak = 0
 
 let questionIndex = 1
 let answerIndex = 0
@@ -26,6 +27,9 @@ function updateQuestion() {
 
     const questionHeader = document.getElementById("questionTitle")
     questionHeader.textContent = `Question (${currentQuestion + 1} / ${questionList.length}):`
+
+    const score = document.getElementById("scoring")
+    score.textContent = `Answer Streak: ${currentStreak}`
 
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][questionIndex]
@@ -147,17 +151,21 @@ function checkAnswer() {
         if (correctOption == selectedAnswer) {
             header.textContent = "Correct"
             box.className = "Correct"
+            currentStreak++
         } else {
             header.textContent = "Incorrect"
             box.className = "Incorrect"
+            currentStreak = 0
         }
     } else {
         if (TEXTANSWERS.value.trim() == correctAnswer.trim()) {
             header.textContent = "Correct"
             box.className = "Correct"            
+            currentStreak++
         } else {
             header.textContent = `"${TEXTANSWERS.value}" is Incorrect`
             box.className = "Incorrect"
+            currentStreak = 0
         }
     }
 
@@ -180,6 +188,7 @@ function submitAnswer() {
 }
 
 function flipQuestionType() {
+    if (questionList.length <= 0) {alert("Please upload a file first"); return}
     ;[questionIndex, answerIndex] = [answerIndex, questionIndex]
     updateQuestion()
     updateAnswers()
