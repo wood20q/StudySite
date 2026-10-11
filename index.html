@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js" defer></script>
     <title>Study Site</title>
 </head>
@@ -12,10 +13,25 @@
     <!-- refactored Code -->
     <nav>
         <h1>Study Site</h1>
-        <button class="switchType" onClick="flipQuestionType()">Switch Question Type</button>
-        <button class="switchType" onClick="flipAnswerType()">Switch Answer Type</button>
+        <div class="rightSide">
+            <button class="switchType" id="navButton" onClick="flipQuestionType()">Switch Question Type</button>
+            <button class="switchType" id="navButton" onClick="flipAnswerType()">Switch Answer Type</button>
+            <i class="fa fa-gear" id="settings" onclick="settingsButton()"></i>
+        </div>
     </nav>
     <main>
+        <dialog id="settingsMenu">
+            <div class="settingsMenuWrapper">
+                <div class="settingOption">
+                    <h2>Switch Question Type:</h2>
+                    <button class="switchType settingsButton" onClick="flipQuestionType()">Switch Question Type</button>
+                </div>
+                <div class="settingOption">
+                    <h2>Switch Answer Option:</h2>
+                    <button class="switchType settingsButton" onClick="flipAnswerType()">Switch Answer Type</button>
+                </div>
+            </div>
+        </dialog>
         <header>
             <h1 id="questionTitle">Question:</h1>
             <h3 id="scoring">Answer Streak: 0</h3>

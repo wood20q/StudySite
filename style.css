@@ -17,10 +17,43 @@ body {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     gap: 1em;
     background-color: var(--mantle);
     padding: 1em;
+}
+
+.rightSide {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+#settings {
+    display: none;
+    font-size: 1.5em;
+}
+
+#settingsMenu {
+    margin: auto;
+    padding: 1em;
+    background-color: var(--base);
+    color: var(--text);
+    border-radius: 25px;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+.settingsMenuWrapper {
+    display: grid;
+    gap: 1em;
+}
+
+.settingOption {
+    display: grid;
+    gap: .25em;
 }
 
 main {
@@ -38,26 +71,10 @@ header {
     grid-template-columns: 1fr auto;
 }
 
-@media (max-width: 475px) {
-    header {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-    }
-
-    .answerOptions {
-        flex-direction: column;
-    }
-
-    .buttonsWrapper {
-        flex-direction: column;
-    }
-}
-
-/* Old Code */
-
 .answerOptions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 1em;
     list-style: none;
 }
@@ -90,7 +107,9 @@ header {
 }
 
 .buttonsWrapper {
-    display: flex;
+    display: grid;
+    width: 80%;
+    grid-template-columns: 1fr auto;
     justify-self: center;
     gap: 0.5em;
 }
@@ -127,4 +146,22 @@ header {
 
 .Incorrect {
     background-color: var(--red);
+}
+
+@media (max-width: 510px) {
+    #settings {display: flex;}
+    #navButton {display: none;}
+
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .answerOptions {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonsWrapper {
+        grid-template-columns: 1fr;
+    }
 }

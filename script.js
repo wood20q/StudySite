@@ -3,6 +3,7 @@ const BBUTTON = document.getElementById("optionB")
 const CBUTTON = document.getElementById("optionC")
 const DBUTTON = document.getElementById("optionD")
 const TEXTANSWERS = document.getElementById("answerBox")
+const SETTINGSMENU = document.getElementById("settingsMenu")
 
 let selectedAnswer = null
 let correctOption = null
@@ -213,3 +214,25 @@ TEXTANSWERS.addEventListener("keydown", function(event) {
         submitAnswer();
     }
 });
+
+function settingsButton() {
+    SETTINGSMENU.inert = true;
+    SETTINGSMENU.showModal()
+    SETTINGSMENU.inert = false;
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "1" || event.key === "a") {chooseAnswer("a")}
+        else if (event.key === "2" || event.key === "b") {chooseAnswer("b")}
+        else if (event.key === "3" || event.key === "c") {chooseAnswer("c")}
+        else if (event.key === "4" || event.key === "d") {chooseAnswer("d")}
+        else if (event.key === "Enter") {submitAnswer()}
+    })
+
+    SETTINGSMENU.addEventListener("click", function(event) {
+        if (event.target === this) {
+            SETTINGSMENU.close()
+        }
+    })
+})
