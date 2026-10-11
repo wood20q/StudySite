@@ -84,7 +84,7 @@ In text mode:
 - Press Submit or hit Enter
 - The app checks the response against the correct answer
 
-### 4. Switch question type
+### 4. Switch question type (Found in nav bar or settings menu)
 
 The "Switch Question Type" button flips the app between:
 
@@ -93,7 +93,7 @@ The "Switch Question Type" button flips the app between:
 
 This is useful for studying in reverse, such as identifying a formula from a name or vice versa.
 
-### 5. Switch answer type
+### 5. Switch answer type (Found in nav bar or settings menu)
 
 The "Switch Answer Type" button toggles between:
 
@@ -119,9 +119,9 @@ To use it, simply serve the files locally in a browser or open `index.html` dire
 
 ## Suggested next improvements
 
-- Add scoring and progress tracking
+- ~~Add scoring and progress tracking~~
 - Add flashcard review history or streaks
-- Add keyboard shortcuts for answer selection
+- ~~Add keyboard shortcuts for answer selection~~
 - Add support for larger CSV files and stronger validation checks
 - Add a landing page or built-in instructions panel
 - Add support for case-insensitive or normalized text matching in text mode
