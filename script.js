@@ -3,12 +3,14 @@ const BBUTTON = document.getElementById("optionB")
 const CBUTTON = document.getElementById("optionC")
 const DBUTTON = document.getElementById("optionD")
 const TEXTANSWERS = document.getElementById("answerBox")
+const SETTINGSMENU = document.getElementById("settingsMenu")
 
 let selectedAnswer = null
 let correctOption = null
 let correctAnswer = null
 let questionList = []
 let currentQuestion = 0
+let currentStreak = 0
 
 let questionIndex = 1
 let answerIndex = 0
@@ -26,6 +28,9 @@ function updateQuestion() {
 
     const questionHeader = document.getElementById("questionTitle")
     questionHeader.textContent = `Question (${currentQuestion + 1} / ${questionList.length}):`
+
+    const score = document.getElementById("scoring")
+    score.textContent = `Answer Streak: ${currentStreak}`
 
     const questionField = document.getElementById("question")
     questionField.textContent = questionList[currentQuestion][questionIndex]
@@ -147,17 +152,21 @@ function checkAnswer() {
         if (correctOption == selectedAnswer) {
             header.textContent = "Correct"
             box.className = "Correct"
+            currentStreak++
         } else {
             header.textContent = "Incorrect"
             box.className = "Incorrect"
+            currentStreak = 0
         }
     } else {
         if (TEXTANSWERS.value.trim() == correctAnswer.trim()) {
             header.textContent = "Correct"
             box.className = "Correct"            
+            currentStreak++
         } else {
             header.textContent = `"${TEXTANSWERS.value}" is Incorrect`
             box.className = "Incorrect"
+            currentStreak = 0
         }
     }
 
@@ -180,6 +189,7 @@ function submitAnswer() {
 }
 
 function flipQuestionType() {
+    if (questionList.length <= 0) {alert("Please upload a file first"); return}
     ;[questionIndex, answerIndex] = [answerIndex, questionIndex]
     updateQuestion()
     updateAnswers()
@@ -204,3 +214,27 @@ TEXTANSWERS.addEventListener("keydown", function(event) {
         submitAnswer();
     }
 });
+
+function settingsButton() {
+    SETTINGSMENU.inert = true;
+    SETTINGSMENU.showModal()
+    SETTINGSMENU.inert = false;
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("keydown", function(event) {
+        if (multipleChoice) {
+            if (event.key === "1" || event.key === "a") {chooseAnswer("a")}
+            else if (event.key === "2" || event.key === "b") {chooseAnswer("b")}
+            else if (event.key === "3" || event.key === "c") {chooseAnswer("c")}
+            else if (event.key === "4" || event.key === "d") {chooseAnswer("d")}
+            else if (event.key === "Enter") {submitAnswer()}
+        }
+    })
+
+    SETTINGSMENU.addEventListener("click", function(event) {
+        if (event.target === this) {
+            SETTINGSMENU.close()
+        }
+    })
+})
