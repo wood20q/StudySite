@@ -45,16 +45,16 @@ function updateAnswers() {
 
     if (answerRandomNumber == 0) {
         correctOption = 'a';
-        answerOptions[0] = questionList[currentQuestion][answerIndex]
+        answerOptions[0] = questionList[currentQuestion]
     } else if (answerRandomNumber == 1) {
         correctOption = 'b';
-        answerOptions[1] = questionList[currentQuestion][answerIndex]
+        answerOptions[1] = questionList[currentQuestion]
     } else if (answerRandomNumber == 2) {
         correctOption = 'c';
-        answerOptions[2] = questionList[currentQuestion][answerIndex]
+        answerOptions[2] = questionList[currentQuestion]
     } else if (answerRandomNumber == 3) {
         correctOption = 'd';
-        answerOptions[3] = questionList[currentQuestion][answerIndex]
+        answerOptions[3] = questionList[currentQuestion]
     }
 
     correctAnswer = questionList[currentQuestion][answerIndex]
@@ -64,16 +64,18 @@ function updateAnswers() {
             let randomAnswer = Math.floor(Math.random() * questionList.length)
             let match = false
             for (let j = 0; j < answerOptions.length; j++){
-                if (questionList[randomAnswer][answerIndex] == answerOptions[j]) match = true
+                if (answerOptions[j] == null) {continue}
+                else if (questionList[randomAnswer][answerIndex] === answerOptions[j][answerIndex] || 
+                    questionList[randomAnswer][questionIndex] === answerOptions[j][questionIndex]) match = true
             }
-            if (!match) answerOptions[i] = questionList[randomAnswer][answerIndex]
+            if (!match) answerOptions[i] = questionList[randomAnswer]
         }
     }
 
-    ABUTTON.querySelector(".answer").textContent = answerOptions[0]
-    BBUTTON.querySelector(".answer").textContent = answerOptions[1]
-    CBUTTON.querySelector(".answer").textContent = answerOptions[2]
-    DBUTTON.querySelector(".answer").textContent = answerOptions[3]
+    ABUTTON.querySelector(".answer").textContent = answerOptions[0][answerIndex]
+    BBUTTON.querySelector(".answer").textContent = answerOptions[1][answerIndex]
+    CBUTTON.querySelector(".answer").textContent = answerOptions[2][answerIndex]
+    DBUTTON.querySelector(".answer").textContent = answerOptions[3][answerIndex]
 }
 
 function importCSV(file) {

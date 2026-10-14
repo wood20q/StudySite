@@ -1,0 +1,14 @@
+electron groups,bond angles
+total: 2; bg: 2; nbg:0,180
+total: 3; bg: 3; nbg:0,120
+total: 3; bg: 2; nbg:1,<120
+total: 4; bg: 4; nbg:0,109.5
+total: 4; bg: 3; nbg:1,<109.5
+total: 4; bg: 2; nbg:2,<109.5
+total: 5; bg: 5; nbg:0,equatorial: 120; axial: 90
+total: 5; bg: 4; nbg:1,equatorial: <120; axial: <90
+total: 5; bg: 3; nbg:2,<90
+total: 5; bg: 2; nbg:3,180
+total: 6; bg: 6; nbg:0,90
+total: 6; bg: 5; nbg:1,<90
+total: 6; bg: 4; nbg:2,90
