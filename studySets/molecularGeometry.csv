@@ -1,0 +1,14 @@
+electron groups,molecular geometry
+total: 2; bg: 2; nbg:0,linear
+total: 3; bg: 3; nbg:0,trigonal planar
+total: 3; bg: 2; nbg:1,bent
+total: 4; bg: 4; nbg:0,tetrahedral
+total: 4; bg: 3; nbg:1,trigonal pyramidal
+total: 4; bg: 2; nbg:2,bent
+total: 5; bg: 5; nbg:0,trigonal bipyramidal
+total: 5; bg: 4; nbg:1,see-saw
+total: 5; bg: 3; nbg:2,t-shaped
+total: 5; bg: 2; nbg:3,linear
+total: 6; bg: 6; nbg:0,octahedral
+total: 6; bg: 5; nbg:1,square pyramidal
+total: 6; bg: 4; nbg:2,square planar
